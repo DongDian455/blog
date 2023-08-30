@@ -54,28 +54,38 @@ disable_top_img: false
 index_img: /img/blog_bg.png
   
 # If the banner of page not setting, it will show the top_img
-default_top_img:
+default_top_img: /img/blog_bg.png
 
 # The banner image of archive page
 archive_img:
 
 # If the banner of tag page not setting, it will show the top_img
 # note: tag page, not tags page (子標籤頁面的 top_img)
-tag_img: 
+tag_img: /img/blog_bg.png
 
-# The banner image of tag page
-# format:
-#  - tag name: xxxxx
-tag_per_img: /img/blog_bg.png
+# # The banner image of tag page
+# # format:
+# #  - tag name: xxxxx
+# tag_per_img: 
+# #  - IOS: https://ask.qcloudimg.com/http-save/yehe-1147591/79ztes951n.jpeg
+# #  - Android: /img/blog_bg.png
+
 
 # If the banner of category page not setting, it will show the top_img
 # note: category page, not categories page (子分類頁面的 top_img)
-category_img: 
+category_img: /img/blog_bg.png
 
-# The banner image of category page
-# format:
-#  - category name: xxxxx
-category_per_img: /img/blog_bg.png
+category_per_img:
+  IOS: https://ask.qcloudimg.com/http-save/yehe-1147591/79ztes951n.jpeg
+  Android: /img/blog_bg.png
+  
+# # The banner image of category page
+# # format:
+# #  - category name: xxxxx
+# category_per_img:
+#  - category IOS: https://ask.qcloudimg.com/http-save/yehe-1147591/79ztes951n.jpeg
+#  - category Android: /img/blog_bg.png
+
 
 cover:
   # display the cover or not (是否顯示文章封面)
