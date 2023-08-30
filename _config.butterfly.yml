@@ -75,9 +75,9 @@ tag_img: /img/blog_bg.png
 # note: category page, not categories page (子分類頁面的 top_img)
 category_img: /img/blog_bg.png
 
-category_per_img:
-  IOS: https://ask.qcloudimg.com/http-save/yehe-1147591/79ztes951n.jpeg
-  Android: /img/blog_bg.png
+# category_per_img:
+#   IOS: https://ask.qcloudimg.com/http-save/yehe-1147591/79ztes951n.jpeg
+#   Android: /img/blog_bg.png
   
 # # The banner image of category page
 # # format:
@@ -244,7 +244,7 @@ aside:
       link: https://github.com/DongDian455
   card_announcement:
     enable: true
-    content: 看清世界,还要热爱生活
+    content: ""
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
@@ -680,7 +680,7 @@ activate_power_mode:
 # canvas_ribbon (靜止彩帶背景)
 # See: https://github.com/hustcc/ribbon.js
 canvas_ribbon:
-  enable: false
+  enable: true
   size: 150
   alpha: 0.6
   zIndex: -1
@@ -689,7 +689,7 @@ canvas_ribbon:
 
 # Fluttering Ribbon (動態彩帶)
 canvas_fluttering_ribbon:
-  enable: true
+  enable: false
   mobile: false
 
 # canvas_nest
@@ -715,11 +715,11 @@ click_heart:
 
 # Mouse click effects: words (鼠標點擊效果: 文字)
 ClickShowText:
-  enable: false
-  text:
-    # - I
-    # - LOVE
-    # - YOU
+  enable: true
+  text:    
+    - return
+    - to
+    - life
   fontSize: 15px
   random: false
   mobile: false
@@ -757,7 +757,7 @@ hr_icon:
 
 # the subtitle on homepage (主頁subtitle)
 subtitle:
-  enable: false
+  enable: true
   # Typewriter Effect (打字效果)
   effect: true
   # Customize typed.js (配置typed.js)
