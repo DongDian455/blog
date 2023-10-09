@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Android-ViewGroup的三大流程 | ReturnTolife</title><meta name="author" content="何方神圣tolife"><meta name="copyright" content="何方神圣tolife"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="ViewGroup的三大流程因为ViewGroup也是继承View,所以同样存在三大流程  测量 measure 布局 layout 绘制 draw  ViewGroup的测量ViewGroup的作用主要用于管理子View，而在测量的时候可以分两种情况。  当ViewGroup的大小设置为 wrap_content的时候 ： ViewGroup就需要对子view进行遍历，以便于获取每个子view的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android-ViewGroup的三大流程">
+<meta property="og:url" content="https://dongdian455.github.io/2023/10/09/Android_ViewGroup%E7%9A%84%E4%B8%89%E5%A4%A7%E6%B5%81%E7%A8%8B/index.html">
+<meta property="og:site_name" content="ReturnTolife">
+<meta property="og:description" content="ViewGroup的三大流程因为ViewGroup也是继承View,所以同样存在三大流程  测量 measure 布局 layout 绘制 draw  ViewGroup的测量ViewGroup的作用主要用于管理子View，而在测量的时候可以分两种情况。  当ViewGroup的大小设置为 wrap_content的时候 ： ViewGroup就需要对子view进行遍历，以便于获取每个子view的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dongdian455.github.io/img/blog_avatar.jpeg">
+<meta property="article:published_time" content="2023-10-09T09:02:30.735Z">
+<meta property="article:modified_time" content="2023-10-09T09:02:32.828Z">
+<meta property="article:author" content="何方神圣tolife">
+<meta property="article:tag" content="Android_视图控件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dongdian455.github.io/img/blog_avatar.jpeg"><link rel="shortcut icon" href="/img/blog_avatar.jpeg"><link rel="canonical" href="https://dongdian455.github.io/2023/10/09/Android_ViewGroup%E7%9A%84%E4%B8%89%E5%A4%A7%E6%B5%81%E7%A8%8B/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Android-ViewGroup的三大流程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-09 17:02:32'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/blog_avatar.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="ReturnTolife"><span class="site-name">ReturnTolife</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Android-ViewGroup的三大流程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-09T09:02:30.735Z" title="发表于 2023-10-09 17:02:30">2023-10-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-09T09:02:32.828Z" title="更新于 2023-10-09 17:02:32">2023-10-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Android/">Android</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Android-ViewGroup的三大流程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="ViewGroup的三大流程"><a href="#ViewGroup的三大流程" class="headerlink" title="ViewGroup的三大流程"></a>ViewGroup的三大流程</h1><p>因为ViewGroup也是继承View,所以同样存在三大流程</p>
+<ul>
+<li>测量 measure</li>
+<li>布局 layout</li>
+<li>绘制 draw</li>
+</ul>
+<h1 id="ViewGroup的测量"><a href="#ViewGroup的测量" class="headerlink" title="ViewGroup的测量"></a>ViewGroup的测量</h1><p>ViewGroup的作用主要用于管理子View，而在测量的时候可以分两种情况。</p>
+<ul>
+<li>当ViewGroup的大小设置为 wrap_content的时候 ： ViewGroup就需要对子view进行遍历，以便于获取每个子view的大小，从而来决定自身大小</li>
+<li>当ViewGroup的大小设置为上述的其他模式的时候： 就会通过具体的大小来设置自身的大小</li>
+</ul>
+<p>关于ViewGroup遍历子View去测量的方法，android中已经帮我们封装了两个常用方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">protected void measureChildren(int widthMeasureSpec, int heightMeasureSpec)</span><br><span class="line">protected void measureChildWithMargins(View child, int parentWidthMeasureSpec, int widthUsed, int parentHeightMeasureSpec, int heightUsed)</span><br></pre></td></tr></table></figure>
+
+<p>从方法名和方法里面不难看出这两个方法的区别，就是后者把子View的padding和margin也考虑了进去，不过他们最终调用的都是子View的View.measure(int wSpec,int hSpec)方法,<br>该方法会触发子View的onMeasure方法</p>
+<p>最后在测量子View之后，就要对自身大小做决定了，同样是根据不同的测量模式来确定最终的大小，并且最后需要调用以下方法来设置最终的宽高</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protected final void setMeasuredDimension(int measuredWidth, int measuredHeight)</span><br></pre></td></tr></table></figure>
+
+<p>##ViewGroup的测量栗子</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   @Override</span><br><span class="line">    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) &#123;</span><br><span class="line">        //测量子view</span><br><span class="line">        measureChildren(widthMeasureSpec,heightMeasureSpec);</span><br><span class="line"></span><br><span class="line">        int wModeSpec=MeasureSpec.getMode(widthMeasureSpec);</span><br><span class="line">        int wSizeSpec=MeasureSpec.getSize(widthMeasureSpec);</span><br><span class="line"></span><br><span class="line">        //这里只做了宽的测量，高度的测量也是类似的</span><br><span class="line">        int resuletW=myMeasureWidth(wModeSpec,wSizeSpec);</span><br><span class="line"></span><br><span class="line">        setMeasuredDimension(resuletW,heightMeasureSpec);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private  int myMeasureWidth(int specMode,int specSize)&#123;</span><br><span class="line">        int result=0;</span><br><span class="line">        if(specMode==MeasureSpec.EXACTLY)&#123;</span><br><span class="line">            //精准模式直接赋值</span><br><span class="line">            result=specSize;</span><br><span class="line">        &#125;else if(specMode==MeasureSpec.AT_MOST)&#123;</span><br><span class="line">            //这里一般根据ViewGroup的类型来做处理，比如framelayout,linearlayout这些类型</span><br><span class="line">            //对于linearlayout类并且是水平排版,那么就是累积子类宽度</span><br><span class="line">            for (int i = 0; i &lt; getChildCount(); i++) &#123;</span><br><span class="line">                View view = getChildAt(i);</span><br><span class="line">                result += view.getMeasuredWidth();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            //对于framelayout这种类型，我们只需取最大的就好</span><br><span class="line">            for (int i = 0; i &lt; getChildCount(); i++) &#123;</span><br><span class="line">                View view = getChildAt(i);</span><br><span class="line">                result = view.getMeasuredWidth() &gt; result ? view.getMeasuredWidth() : result;</span><br><span class="line">//            &#125;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            //剩余的这种模式就是没限制大小的模式了，一般用于recyclerview这种可以扩展的布局形式</span><br><span class="line">            //具体的测量方法就是看实际需求了</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>#ViewGroup的布局<br>在自定义ViewGroup的时候，我们必须重写如下方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">  protected void onLayout(boolean changed, int l, int t, int r, int b) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>方法主要就是通知子View去设置他们的布局位置，之前的篇章也已经详细说明了View.layout方法的过程这里就不重复</p>
+</blockquote>
+<p><strong>垂直排放子View的例子</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line"> protected void onLayout(boolean changed, int l, int t, int r, int b) &#123;</span><br><span class="line">     // 子view数目</span><br><span class="line">     int childCount = getChildCount();</span><br><span class="line">     // 垂直摆放子view</span><br><span class="line">     for (int i = 0;i&lt;childCount;i++)&#123;</span><br><span class="line">         View childView = getChildAt(i);</span><br><span class="line">         int height = childView.getMeasuredHeight();</span><br><span class="line">          //这里摆放子view的设计也是根据实际需要，这里这做个简单的例子</span><br><span class="line">         childView.layout(l, i*height, r, t + (i+1)*height);</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="ViewGroup的绘制"><a href="#ViewGroup的绘制" class="headerlink" title="ViewGroup的绘制"></a>ViewGroup的绘制</h1><p>ViewGroup通常情况下不需要绘制，因为他本身就没有需要绘制的东西。所以他实现的是dispatchDraw，而不是draw方法。</p>
+<blockquote>
+<p>特别的，如果ViewGroup没有设置背景，那么他连onDraw方法都不会回调</p>
+</blockquote>
+<p><strong>需要注意，根据View中draw方法的实现，对于Viewgroup而言onDraw()先于dispatchDraw()执行</strong> ，源码如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> @Override</span><br><span class="line">    protected void dispatchDraw(Canvas canvas) &#123;</span><br><span class="line"></span><br><span class="line">    	//...</span><br><span class="line">    	//...</span><br><span class="line"></span><br><span class="line">    	drawChild(canvas, transientChild, drawingTime);</span><br><span class="line"></span><br><span class="line">			//...</span><br><span class="line">    	//...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">protected boolean drawChild(Canvas canvas, View child, long drawingTime) &#123;</span><br><span class="line">        return child.draw(canvas, this, drawingTime);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>而在dispatchDraw方法中，最主要是调用了drawChild方法，而drawChid方法的实现又回到View当中,而View中对于该方法主要实现了两件事</p>
+<ul>
+<li>第一：确定布局的绘制位置 （通过RenderNode）</li>
+<li>第二：调用Canvas进行绘制</li>
+</ul>
+<blockquote>
+<p>RenderNode是通过updateDisplayListIfDirty方法获取的，里面会根据是否启用硬件加速来判断具体的实现</p>
+</blockquote>
+<ul>
+<li>对于支持硬件加速来说，RenderNode变化了，相应的Canvas绘制范围也会变化。</li>
+<li>对于不支持硬件加速来说，将会在View.draw(x1,x2,x3)方法里获取matrix，从而移动Canvas。</li>
+</ul>
+<h2 id="ClipChildren"><a href="#ClipChildren" class="headerlink" title="ClipChildren"></a>ClipChildren</h2><p><strong>存在一个问题，就是对于View而言，它的Canvas绘制区域到底有多大？</strong></p>
+<p>答案就是通过ClipChildren来决定一个View的可绘制区域.<br>在前面说到View的绘制区域实际是由RenderNode控制的，所以ClipChildren实际也是作用在RenderNode上，源码如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//View.java</span><br><span class="line">void setDisplayListProperties(RenderNode renderNode) &#123;</span><br><span class="line">    if (renderNode != null) &#123;</span><br><span class="line">        ......</span><br><span class="line">        renderNode.setClipToBounds(mParent instanceof ViewGroup</span><br><span class="line">                &amp;&amp; ((ViewGroup) mParent).getClipChildren());</span><br><span class="line">        ......</span><br><span class="line">    &#125;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而setDisplayListProperties的调用实际是在上面updateDisplayListIfDirty之中，即可以知道，ClipChildren是在布局绘制的时候查看是否启用。</p>
+<p><strong>根据方法内容可知：</strong><br>View在绘制的时候会判断当前mParent是否存在，并且getClipChildren是否为true来判断是否启用ClipToBounds。<br>而getClipChildren默认实现是为true的，所以默认View的可绘制区域都是其父View的大小</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://dongdian455.github.io">何方神圣tolife</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://dongdian455.github.io/2023/10/09/Android_ViewGroup%E7%9A%84%E4%B8%89%E5%A4%A7%E6%B5%81%E7%A8%8B/">https://dongdian455.github.io/2023/10/09/Android_ViewGroup%E7%9A%84%E4%B8%89%E5%A4%A7%E6%B5%81%E7%A8%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://dongdian455.github.io" target="_blank">ReturnTolife</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Android-%E8%A7%86%E5%9B%BE%E6%8E%A7%E4%BB%B6/">Android_视图控件</a></div><div class="post_share"><div class="social-share" data-image="/img/blog_avatar.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/10/09/Android_View%E7%9A%84%E4%B8%89%E5%A4%A7%E6%B5%81%E7%A8%8B/" title="Android-View的三大流程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Android-View的三大流程</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/10/09/Android_View%E7%9A%84%E4%B8%89%E5%A4%A7%E6%B5%81%E7%A8%8B/" title="Android-View的三大流程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-09</div><div class="title">Android-View的三大流程</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/blog_avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">何方神圣tolife</div><div class="author-info__description">这是我的博客网站</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/DongDian455"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">使用梯子访问体验更佳~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ViewGroup%E7%9A%84%E4%B8%89%E5%A4%A7%E6%B5%81%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">ViewGroup的三大流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ViewGroup%E7%9A%84%E6%B5%8B%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">ViewGroup的测量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ViewGroup%E7%9A%84%E7%BB%98%E5%88%B6"><span class="toc-number">3.</span> <span class="toc-text">ViewGroup的绘制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ClipChildren"><span class="toc-number">3.1.</span> <span class="toc-text">ClipChildren</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/09/Android_ViewGroup%E7%9A%84%E4%B8%89%E5%A4%A7%E6%B5%81%E7%A8%8B/" title="Android-ViewGroup的三大流程">Android-ViewGroup的三大流程</a><time datetime="2023-10-09T09:02:30.735Z" title="发表于 2023-10-09 17:02:30">2023-10-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/09/Android_View%E7%9A%84%E4%B8%89%E5%A4%A7%E6%B5%81%E7%A8%8B/" title="Android-View的三大流程">Android-View的三大流程</a><time datetime="2023-10-09T08:03:29.732Z" title="发表于 2023-10-09 16:03:29">2023-10-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/09/Android_%E5%8C%85%E4%BD%93%E7%A7%AF/" title="Android-包体积">Android-包体积</a><time datetime="2023-10-09T07:52:16.850Z" title="发表于 2023-10-09 15:52:16">2023-10-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/01/%E4%BA%8C%E5%88%86%E6%B3%95_%E4%B8%AD%E9%97%B4%E4%B8%8B%E6%A0%87/" title="二分法_中间下标取值">二分法_中间下标取值</a><time datetime="2023-09-01T06:13:28.739Z" title="发表于 2023-09-01 14:13:28">2023-09-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/31/Android_%E7%AD%BE%E5%90%8D/" title="Android-签名相关">Android-签名相关</a><time datetime="2023-08-31T06:44:23.859Z" title="发表于 2023-08-31 14:44:23">2023-08-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 何方神圣tolife</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addModeChange('mermaid', runMermaid)
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="return,to,life" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
