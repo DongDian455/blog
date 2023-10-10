@@ -1,0 +1,3 @@
+[submodule "source/_posts/blogs-main"]
+	path = source/_posts/blogs-main
+	url = git@github.com:DongDian455/blogs-main.git
