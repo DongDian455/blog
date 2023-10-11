@@ -244,7 +244,7 @@ aside:
       link: https://github.com/DongDian455
   card_announcement: 
     enable: true
-    content: "使用梯子访问体验更佳~"
+    content: "不积跬步，无以至千里"
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
