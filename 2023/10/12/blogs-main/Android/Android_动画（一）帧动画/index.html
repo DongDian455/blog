@@ -1,0 +1,260 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Android_动画（一）帧动画 | ReturnTolife</title><meta name="author" content="何方神圣tolife"><meta name="copyright" content="何方神圣tolife"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="帧动画定义帧动画就是由一张张图片按一定顺序进行切换，类似于幻灯片的播放，只是播放速度符合人类感官效果。 帧动画的优缺点  缺点：内存开销大，容易造成oom 优点：使用简单好像是唯一优势，但是目前都是使用lottie,svga等框架实现动画播放   目前，在真实项目中，已经很少使用  帧动画的使用方式方式一: xml利用animation-list在xml文件中设置 12345&lt;animati">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android_动画（一）帧动画">
+<meta property="og:url" content="https://dongdian455.github.io/2023/10/12/blogs-main/Android/Android_%E5%8A%A8%E7%94%BB%EF%BC%88%E4%B8%80%EF%BC%89%E5%B8%A7%E5%8A%A8%E7%94%BB/index.html">
+<meta property="og:site_name" content="ReturnTolife">
+<meta property="og:description" content="帧动画定义帧动画就是由一张张图片按一定顺序进行切换，类似于幻灯片的播放，只是播放速度符合人类感官效果。 帧动画的优缺点  缺点：内存开销大，容易造成oom 优点：使用简单好像是唯一优势，但是目前都是使用lottie,svga等框架实现动画播放   目前，在真实项目中，已经很少使用  帧动画的使用方式方式一: xml利用animation-list在xml文件中设置 12345&lt;animati">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dongdian455.github.io/img/blog_avatar.jpeg">
+<meta property="article:published_time" content="2023-10-12T06:11:26.476Z">
+<meta property="article:modified_time" content="2023-10-12T06:11:26.476Z">
+<meta property="article:author" content="何方神圣tolife">
+<meta property="article:tag" content="Android_动画">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dongdian455.github.io/img/blog_avatar.jpeg"><link rel="shortcut icon" href="/img/blog_avatar.jpeg"><link rel="canonical" href="https://dongdian455.github.io/2023/10/12/blogs-main/Android/Android_%E5%8A%A8%E7%94%BB%EF%BC%88%E4%B8%80%EF%BC%89%E5%B8%A7%E5%8A%A8%E7%94%BB/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Android_动画（一）帧动画',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-12 14:11:26'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/blog_avatar.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="ReturnTolife"><span class="site-name">ReturnTolife</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Android_动画（一）帧动画</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-12T06:11:26.476Z" title="发表于 2023-10-12 14:11:26">2023-10-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-12T06:11:26.476Z" title="更新于 2023-10-12 14:11:26">2023-10-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Android/">Android</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Android_动画（一）帧动画"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="帧动画定义"><a href="#帧动画定义" class="headerlink" title="帧动画定义"></a>帧动画定义</h1><p>帧动画就是由一张张图片按一定顺序进行切换，类似于幻灯片的播放，只是播放速度符合人类感官效果。</p>
+<p><strong>帧动画的优缺点</strong></p>
+<ul>
+<li>缺点：内存开销大，容易造成oom</li>
+<li>优点：使用简单好像是唯一优势，但是目前都是使用lottie,svga等框架实现动画播放</li>
+</ul>
+<blockquote>
+<p>目前，在真实项目中，已经很少使用</p>
+</blockquote>
+<h1 id="帧动画的使用方式"><a href="#帧动画的使用方式" class="headerlink" title="帧动画的使用方式"></a>帧动画的使用方式</h1><h2 id="方式一-xml"><a href="#方式一-xml" class="headerlink" title="方式一: xml"></a>方式一: xml</h2><p>利用animation-list在xml文件中设置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;animation-list xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;item android:drawable=&quot;@drawable/frame_0&quot; android:duration=&quot;100&quot;/&gt;</span><br><span class="line">    &lt;item android:drawable=&quot;@drawable/frame_1&quot; android:duration=&quot;100&quot;/&gt;</span><br><span class="line">    &lt;item android:drawable=&quot;@drawable/frame_2&quot; android:duration=&quot;100&quot;/&gt;</span><br><span class="line">&lt;/animation-list&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果使用的是ImageView，那么就设置在src，而如果使用的其他View，可设置在background上，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;ImageView</span><br><span class="line">        android:id=&quot;@+id/img_frame&quot;</span><br><span class="line">        android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:src=&quot;@drawable/anim_frame&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;TextView</span><br><span class="line">        android:id=&quot;@+id/tv_text&quot;</span><br><span class="line">        android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;这是TextView&quot;</span><br><span class="line">        android:gravity=&quot;center&quot;</span><br><span class="line">        android:background=&quot;@drawable/anim_frame&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方式二：-代码实现"><a href="#方式二：-代码实现" class="headerlink" title="方式二： 代码实现"></a>方式二： 代码实现</h2><p>xml定义的animation-list，最终会被解析为AnimationDrawable，因此也可以自己创建该类型的drawable设置到对应的控件中</p>
+<p>解析资源文件的方式:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">val animDrawable = resources.getDrawable(R.drawable.anim_frame,null) as AnimationDrawable</span><br><span class="line"></span><br><span class="line">img_frame.setImageDrawable(animDrawable)</span><br><span class="line">   animDrawable.start()  </span><br><span class="line">   </span><br></pre></td></tr></table></figure>
+
+<p>代码设置帧的方式:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">AnimationDrawable drawable = new AnimationDrawable();</span><br><span class="line"></span><br><span class="line">for (int i = 1; i &lt;= 9; i++) &#123;</span><br><span class="line">    int resId = getResources().getIdentifier(&quot;loading_&quot; + df.format(i), &quot;drawable&quot;, getActivity().getPackageName());</span><br><span class="line"></span><br><span class="line">    drawable.addFrame(getResources().getDrawable(resId, null), 100);</span><br><span class="line">    </span><br><span class="line">    img.setImageDrawable(drawable);</span><br><span class="line">&#125;</span><br><span class="line">drawable.start();</span><br></pre></td></tr></table></figure>
+
+<h1 id="帧动画源码解析"><a href="#帧动画源码解析" class="headerlink" title="帧动画源码解析"></a>帧动画源码解析</h1><h2 id="第一步，View于动画的关联"><a href="#第一步，View于动画的关联" class="headerlink" title="第一步，View于动画的关联"></a>第一步，View于动画的关联</h2><p>由于帧动画为一个<code>AnimationDrawable</code>,所以可查看ImageView.setImageDrawable方法追中代码。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public void setImageDrawable(@Nullable Drawable drawable) &#123;</span><br><span class="line">     if (mDrawable != drawable) &#123;</span><br><span class="line">         ......</span><br><span class="line">         updateDrawable(drawable);</span><br><span class="line">         ......</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> private void updateDrawable(Drawable d) &#123;</span><br><span class="line">     ......</span><br><span class="line"></span><br><span class="line">     mDrawable = d;</span><br><span class="line"></span><br><span class="line">     if (d != null) &#123;</span><br><span class="line">         // 将当前View设置给了Drawable</span><br><span class="line">         d.setCallback(this);</span><br><span class="line">         </span><br><span class="line">         ......</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>android中的View默认实现了<code>Drawable.Callback</code>接口，因此上面的方法会将帧动画中的drawable关联上当前view。</p>
+<h2 id="第二步，动画执行"><a href="#第二步，动画执行" class="headerlink" title="第二步，动画执行"></a>第二步，动画执行</h2><p>动画开始为AnimationDrawable.start()方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Starts the animation from the first frame, looping if necessary. This method has no effect</span><br><span class="line">     * if the animation is running.</span><br><span class="line">     * &lt;p&gt;</span><br><span class="line">     * &lt;strong&gt;Note:&lt;/strong&gt; Do not call this in the</span><br><span class="line">     * &#123;@link android.app.Activity#onCreate&#125; method of your activity, because</span><br><span class="line">     * the &#123;@link AnimationDrawable&#125; is not yet fully attached to the window.</span><br><span class="line">     * If you want to play the animation immediately without requiring</span><br><span class="line">     * interaction, then you might want to call it from the</span><br><span class="line">     * &#123;@link android.app.Activity#onWindowFocusChanged&#125; method in your</span><br><span class="line">     * activity, which will get called when Android brings your window into</span><br><span class="line">     * focus.</span><br><span class="line">     *</span><br><span class="line">     * @see #isRunning()</span><br><span class="line">     * @see #stop()</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public void start() &#123;</span><br><span class="line">        mAnimating = true;</span><br><span class="line"></span><br><span class="line">        if (!isRunning()) &#123;</span><br><span class="line">            // Start from 0th frame.</span><br><span class="line">            setFrame(0, false, mAnimationState.getChildCount() &gt; 1</span><br><span class="line">                    || !mAnimationState.mOneShot);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private void setFrame(int frame, boolean unschedule, boolean animate) &#123;</span><br><span class="line">        if (frame &gt;= mAnimationState.getChildCount()) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        mAnimating = animate;</span><br><span class="line">        mCurFrame = frame;</span><br><span class="line">        selectDrawable(frame);</span><br><span class="line">        if (unschedule || animate) &#123;</span><br><span class="line">            unscheduleSelf(this);</span><br><span class="line">        &#125;</span><br><span class="line">        if (animate) &#123;</span><br><span class="line">            // Unscheduling may have clobbered these values; restore them</span><br><span class="line">            mCurFrame = frame;</span><br><span class="line">            mRunning = true;</span><br><span class="line">            scheduleSelf(this, SystemClock.uptimeMillis() + mAnimationState.mDurations[frame]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public void scheduleSelf(@NonNull Runnable what, long when) &#123;</span><br><span class="line">        final Callback callback = getCallback();</span><br><span class="line">        if (callback != null) &#123;</span><br><span class="line">            callback.scheduleDrawable(this, what, when);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>start()方法首先会将mAnimating设置为true表示动画已经开始，然后调用setFrame启动动画。<code>需要注意的是start()方法中的注释表明不能在Activity.onCreate方法调用，因为动画可以还没有与window进行关联</code>。</p>
+<p>接着看<code>scheduleDrawable</code>方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">   public void scheduleDrawable(@NonNull Drawable who, @NonNull Runnable what, long when) &#123;</span><br><span class="line">       if (verifyDrawable(who) &amp;&amp; what != null) &#123;</span><br><span class="line">           final long delay = when - SystemClock.uptimeMillis();</span><br><span class="line">           if (mAttachInfo != null) &#123;</span><br><span class="line">               mAttachInfo.mViewRootImpl.mChoreographer.postCallbackDelayed(</span><br><span class="line">                       Choreographer.CALLBACK_ANIMATION, what, who,</span><br><span class="line">                       Choreographer.subtractFrameDelay(delay));</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">               // Postpone the runnable until we know</span><br><span class="line">               // on which thread it needs to run.</span><br><span class="line">               getRunQueue().postDelayed(what, delay);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>scheduleDrawable方法内部使用了Choreographer对Vsync信号进行监听，再下一次屏幕刷新信号到来的时候会触发<code>AnimationDrawable.run</code>方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">   public void run() &#123;</span><br><span class="line">       nextFrame(false);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> private void nextFrame(boolean unschedule) &#123;</span><br><span class="line">       int nextFrame = mCurFrame + 1;</span><br><span class="line">       final int numFrames = mAnimationState.getChildCount();</span><br><span class="line">       final boolean isLastFrame = mAnimationState.mOneShot &amp;&amp; nextFrame &gt;= (numFrames - 1);</span><br><span class="line"></span><br><span class="line">       // Loop if necessary. One-shot animations should never hit this case.</span><br><span class="line">       if (!mAnimationState.mOneShot &amp;&amp; nextFrame &gt;= numFrames) &#123;</span><br><span class="line">           nextFrame = 0;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       setFrame(nextFrame, unschedule, !isLastFrame);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>run方法主要是判断是否到结束帧，如果没有就切换到下一帧图片。</p>
+<h2 id="第三步，图片的展示"><a href="#第三步，图片的展示" class="headerlink" title="第三步，图片的展示"></a>第三步，图片的展示</h2><p>图片展示，即帧的获取是在<code>selectDrawable</code>方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">public boolean selectDrawable(int index) &#123;</span><br><span class="line">	</span><br><span class="line">    	......</span><br><span class="line">    </span><br><span class="line">        if (index &gt;= 0 &amp;&amp; index &lt; mDrawableContainerState.mNumChildren) &#123;</span><br><span class="line">            final Drawable d = mDrawableContainerState.getChild(index);</span><br><span class="line">            mCurrDrawable = d;</span><br><span class="line">            mCurIndex = index;</span><br><span class="line">            if (d != null) &#123;</span><br><span class="line">                if (mDrawableContainerState.mEnterFadeDuration &gt; 0) &#123;</span><br><span class="line">                    mEnterAnimationEnd = now + mDrawableContainerState.mEnterFadeDuration;</span><br><span class="line">                &#125;</span><br><span class="line">                initializeDrawableForDisplay(d);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            mCurrDrawable = null;</span><br><span class="line">            mCurIndex = -1;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (mEnterAnimationEnd != 0 || mExitAnimationEnd != 0) &#123;</span><br><span class="line">            if (mAnimationRunnable == null) &#123;</span><br><span class="line">                mAnimationRunnable = new Runnable() &#123;</span><br><span class="line">                    @Override public void run() &#123;</span><br><span class="line">                        animate(true);</span><br><span class="line">                        invalidateSelf();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                unscheduleSelf(mAnimationRunnable);</span><br><span class="line">            &#125;</span><br><span class="line">            // Compute first frame and schedule next animation.</span><br><span class="line">            animate(true);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        invalidateSelf();</span><br><span class="line"></span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  public void invalidateSelf() &#123;</span><br><span class="line">        final Callback callback = getCallback();</span><br><span class="line">        if (callback != null) &#123;</span><br><span class="line">            callback.invalidateDrawable(this);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>其主要是对mCurrDrawable赋值，并且调用invalidateSelf(),方法最终会调用View.invalidate()方法进行View的刷新。</p>
+<p>至此，一个完整的流程就串起来了。<br><img src="https://pic.imgdb.cn/item/65269cafc458853aef923d2c.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://dongdian455.github.io">何方神圣tolife</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://dongdian455.github.io/2023/10/12/blogs-main/Android/Android_%E5%8A%A8%E7%94%BB%EF%BC%88%E4%B8%80%EF%BC%89%E5%B8%A7%E5%8A%A8%E7%94%BB/">https://dongdian455.github.io/2023/10/12/blogs-main/Android/Android_%E5%8A%A8%E7%94%BB%EF%BC%88%E4%B8%80%EF%BC%89%E5%B8%A7%E5%8A%A8%E7%94%BB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://dongdian455.github.io" target="_blank">ReturnTolife</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Android-%E5%8A%A8%E7%94%BB/">Android_动画</a></div><div class="post_share"><div class="social-share" data-image="/img/blog_avatar.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/10/12/blogs-main/Android/Android_%E5%8A%A8%E7%94%BB%EF%BC%88%E4%BA%8C%EF%BC%89%E8%A1%A5%E9%97%B4%E5%8A%A8%E7%94%BB/" title="Android_动画（二）补间动画"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Android_动画（二）补间动画</div></div></a></div><div class="next-post pull-right"><a href="/2023/10/10/blogs-main/Android/Android_%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8B%E5%B8%A7%E7%8E%87%E6%A3%80%E6%B5%8B/" title="Android_性能优化之帧率检测"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Android_性能优化之帧率检测</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/10/12/blogs-main/Android/Android_%E5%8A%A8%E7%94%BB%EF%BC%88%E4%BA%8C%EF%BC%89%E8%A1%A5%E9%97%B4%E5%8A%A8%E7%94%BB/" title="Android_动画（二）补间动画"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-12</div><div class="title">Android_动画（二）补间动画</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/blog_avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">何方神圣tolife</div><div class="author-info__description">这是我的博客网站</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/DongDian455"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">使用梯子访问体验更佳~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%A7%E5%8A%A8%E7%94%BB%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">帧动画定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%A7%E5%8A%A8%E7%94%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">帧动画的使用方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80-xml"><span class="toc-number">2.1.</span> <span class="toc-text">方式一: xml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9A-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.2.</span> <span class="toc-text">方式二： 代码实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%A7%E5%8A%A8%E7%94%BB%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-number">3.</span> <span class="toc-text">帧动画源码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%8CView%E4%BA%8E%E5%8A%A8%E7%94%BB%E7%9A%84%E5%85%B3%E8%81%94"><span class="toc-number">3.1.</span> <span class="toc-text">第一步，View于动画的关联</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%8C%E5%8A%A8%E7%94%BB%E6%89%A7%E8%A1%8C"><span class="toc-number">3.2.</span> <span class="toc-text">第二步，动画执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%8C%E5%9B%BE%E7%89%87%E7%9A%84%E5%B1%95%E7%A4%BA"><span class="toc-number">3.3.</span> <span class="toc-text">第三步，图片的展示</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/12/blogs-main/code/%E5%BC%82%E6%88%96/" title="异或">异或</a><time datetime="2023-10-12T06:12:35.672Z" title="发表于 2023-10-12 14:12:35">2023-10-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/12/blogs-main/Android/Android_%E5%8A%A8%E7%94%BB%EF%BC%88%E4%BA%8C%EF%BC%89%E8%A1%A5%E9%97%B4%E5%8A%A8%E7%94%BB/" title="Android_动画（二）补间动画">Android_动画（二）补间动画</a><time datetime="2023-10-12T06:11:26.477Z" title="发表于 2023-10-12 14:11:26">2023-10-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/12/blogs-main/Android/Android_%E5%8A%A8%E7%94%BB%EF%BC%88%E4%B8%80%EF%BC%89%E5%B8%A7%E5%8A%A8%E7%94%BB/" title="Android_动画（一）帧动画">Android_动画（一）帧动画</a><time datetime="2023-10-12T06:11:26.476Z" title="发表于 2023-10-12 14:11:26">2023-10-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/10/blogs-main/Android/Android_%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8B%E5%B8%A7%E7%8E%87%E6%A3%80%E6%B5%8B/" title="Android_性能优化之帧率检测">Android_性能优化之帧率检测</a><time datetime="2023-10-10T07:58:15.514Z" title="发表于 2023-10-10 15:58:15">2023-10-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/10/blogs-main/code/%E4%BA%8C%E5%88%86%E6%B3%95_%E4%B8%AD%E9%97%B4%E4%B8%8B%E6%A0%87/" title="二分法-中间下标取值">二分法-中间下标取值</a><time datetime="2023-10-10T03:52:59.938Z" title="发表于 2023-10-10 11:52:59">2023-10-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 何方神圣tolife</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addModeChange('mermaid', runMermaid)
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="return,to,life" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
