@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Gradle_groovy语法 | ReturnTolife</title><meta name="author" content="何方神圣tolife"><meta name="copyright" content="何方神圣tolife"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="定义变量使用def关键字就可以定义各类型的变量 12def age &#x3D; 16def name &#x3D; &amp;#x27;groovy&amp;#x27;  定义字符串 单引号(‘’):  定义的字符串为不可扩展字符串 双引号(“”): 定义的字符串为可扩展字符串，可扩展字符串里面可以使用 ${} 引用变量值，当 {} 里面只有一个变量，非表达式时，{}也可以去掉(和kotlin的字符串用法一致) 三引号(‘’’ ‘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gradle_groovy语法">
+<meta property="og:url" content="https://dongdian455.github.io/2024/02/07/blogs-main/Gradle/Gradle_groovy%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="ReturnTolife">
+<meta property="og:description" content="定义变量使用def关键字就可以定义各类型的变量 12def age &#x3D; 16def name &#x3D; &amp;#x27;groovy&amp;#x27;  定义字符串 单引号(‘’):  定义的字符串为不可扩展字符串 双引号(“”): 定义的字符串为可扩展字符串，可扩展字符串里面可以使用 ${} 引用变量值，当 {} 里面只有一个变量，非表达式时，{}也可以去掉(和kotlin的字符串用法一致) 三引号(‘’’ ‘">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dongdian455.github.io/img/blog_avatar.jpeg">
+<meta property="article:published_time" content="2024-02-07T10:08:03.816Z">
+<meta property="article:modified_time" content="2024-02-07T10:14:54.639Z">
+<meta property="article:author" content="何方神圣tolife">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Gradle">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dongdian455.github.io/img/blog_avatar.jpeg"><link rel="shortcut icon" href="/img/blog_avatar.jpeg"><link rel="canonical" href="https://dongdian455.github.io/2024/02/07/blogs-main/Gradle/Gradle_groovy%E8%AF%AD%E6%B3%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Gradle_groovy语法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-02-07 18:14:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/blog_avatar.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="ReturnTolife"><span class="site-name">ReturnTolife</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Gradle_groovy语法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-02-07T10:08:03.816Z" title="发表于 2024-02-07 18:08:03">2024-02-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-02-07T10:14:54.639Z" title="更新于 2024-02-07 18:14:54">2024-02-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Gradle/">Gradle</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Gradle_groovy语法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h1><p>使用def关键字就可以定义各类型的变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def age = 16</span><br><span class="line">def name = &#x27;groovy&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="定义字符串"><a href="#定义字符串" class="headerlink" title="定义字符串"></a>定义字符串</h2><ul>
+<li>单引号(‘’):  定义的字符串为不可扩展字符串</li>
+<li>双引号(“”): 定义的字符串为可扩展字符串，可扩展字符串里面可以使用 ${} 引用变量值，当 {} 里面只有一个变量，非表达式时，{}也可以去掉(和kotlin的字符串用法一致)</li>
+<li>三引号(‘’’ ‘’’ ): 定义的字符串为输出带格式的不可扩展字符串<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def name = &#x27;groovy&#x27;</span><br><span class="line"></span><br><span class="line">//单引号</span><br><span class="line">def str1 = &#x27;hello &#x27; + name</span><br><span class="line"></span><br><span class="line">//双引号</span><br><span class="line">def str2 = &quot;hello $name&quot;</span><br><span class="line"></span><br><span class="line">//三引号</span><br><span class="line">def str3 = &#x27;&#x27;&#x27;</span><br><span class="line"></span><br><span class="line">\</span><br><span class="line"></span><br><span class="line">hello</span><br><span class="line"></span><br><span class="line">name</span><br><span class="line">&#x27;&#x27;&#x27;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Get和Set方法"><a href="#Get和Set方法" class="headerlink" title="Get和Set方法"></a>Get和Set方法</h2><ol>
+<li>创建属性的时候，Groovy会帮我们自动创建 get 和 set 方法</li>
+<li>当我们只定义了一个属性的 get 方法，而没有定义这个属性，默认这个属性只读</li>
+<li>在使⽤对象 object.field 来获取值或者使用 object.field &#x3D; value 来赋值的时候，实际上会自动转而调⽤ object.getField() 和 object.setField(value) 方法，如果我们不想调用这个特殊的 get 方法时则可以使用 .@ 直接域访问操作符访问属性本身<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Book&#123;</span><br><span class="line">    def name=&#x27;groovy&#x27;</span><br><span class="line">    </span><br><span class="line">    def getPrice()&#123;</span><br><span class="line">        100</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">def book=new Book(name:&#x27;Java&#x27;)</span><br><span class="line">    </span><br><span class="line">//跳过特殊的get方法，直接访问name属性</span><br><span class="line">def bookName = book.@name</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="定义方法和调用"><a href="#定义方法和调用" class="headerlink" title="定义方法和调用"></a>定义方法和调用</h1><ol>
+<li>方法的定义同样使用def</li>
+<li>方法的调用可以不写()</li>
+<li>方法没有返回值可以直接使用void，不过即使没有返回值，默认也会返回object类型的（参考kotlin）</li>
+<li>有返回值类型的时候也可以不写return，默认为最后一行的数据</li>
+<li>类的构造方法，避免添加def关键字<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//方法定义</span><br><span class="line">def sum(a,b)&#123;</span><br><span class="line">    a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//方法调用</span><br><span class="line">def sum = sum(1,2) //还可以写成这样，但是可读性不好 def sum = sum 1,2 </span><br><span class="line"></span><br><span class="line">//无返回值</span><br><span class="line">void sum(a,b)&#123;</span><br><span class="line">    a+b</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h1><p>&#x3D;&#x3D; 就相当于 Java 的 equals，如果需要比较两个对象是否是同一个，需要使用 .is()</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def book1=new Book(name:&#x27;Kotlin&#x27;)</span><br><span class="line">def book2=new Book(name:&#x27;Java&#x27;)</span><br><span class="line"></span><br><span class="line">println(&quot;book1.name == book2.name is: &quot; + (book1.name == book2.name))</span><br><span class="line"></span><br><span class="line">println(&quot;book1 is book2 is: &quot; + book1.is(book2)</span><br></pre></td></tr></table></figure>
+
+<h1 id="次方运算"><a href="#次方运算" class="headerlink" title="次方运算"></a>次方运算</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def test= 2 ** 4 // test=16</span><br></pre></td></tr></table></figure>
+
+<h1 id="三元表达式"><a href="#三元表达式" class="headerlink" title="三元表达式"></a>三元表达式</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String str = obj ?: &quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<h1 id="非空判断"><a href="#非空判断" class="headerlink" title="非空判断"></a>非空判断</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//和kotlin一样</span><br><span class="line">book?.name</span><br></pre></td></tr></table></figure>
+
+<h1 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Book&#123;</span><br><span class="line"></span><br><span class="line">    def name</span><br><span class="line"></span><br><span class="line">    def price</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//即使没有定义，也可以支持</span><br><span class="line">def book1 = new Book()</span><br><span class="line"></span><br><span class="line">def book2 = new Book(price: 100)</span><br><span class="line"></span><br><span class="line">def book3 = new Book(name: &#x27;groovy&#x27;)</span><br><span class="line"></span><br><span class="line">def book4 = new Book(name:&#x27;groovy&#x27;,price: 100)</span><br></pre></td></tr></table></figure>
+
+<h1 id="异常捕获"><a href="#异常捕获" class="headerlink" title="异常捕获"></a>异常捕获</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line"></span><br><span class="line">    // ...</span><br><span class="line"></span><br><span class="line">&#125; catch (any) &#123;</span><br><span class="line"></span><br><span class="line">    // do something</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def groovyArray = [&quot;Java&quot;, &quot;Groovy&quot;, &quot;Android&quot;] as String[]</span><br></pre></td></tr></table></figure>
+
+<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def list_1 = [1,2,3]</span><br><span class="line">def list_2 = [&#x27;groovy&#x27;, 1, true]  //可以是多种数据类型</span><br><span class="line"></span><br><span class="line">List.add     //增</span><br><span class="line">List.remove  //删</span><br><span class="line">List.find    //闭包遍历</span><br></pre></td></tr></table></figure>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">def map = [a: 1, &#x27;b&#x27;: true, &quot;c&quot; : &quot;Groovy&quot;, &#x27;&#x27;&#x27;d&#x27;&#x27;&#x27; : &#x27;&#x27;&#x27;dddd&#x27;&#x27;&#x27;]</span><br><span class="line">map.key </span><br><span class="line">map[key] </span><br><span class="line">map.get(ket) </span><br><span class="line">map.put(&#x27;key&#x27;,&#x27;value&#x27;)</span><br><span class="line">map[&#x27;key&#x27;] = &quot;value&quot;</span><br><span class="line">map.each &#123;</span><br><span class="line">     print &quot;$it.key $it.value&quot;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">map.each &#123;key,value -&gt;</span><br><span class="line">     print &quot;$key $value \t&quot;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> map.eachWithIndex &#123;entry,index -&gt;</span><br><span class="line">     print &quot;$entry.key $entry.value $index \t&quot;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> map.eachWithIndex &#123; key,value,index -&gt;</span><br><span class="line">     print &quot;$key $value $index \t&quot;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><p>1、this 永远指向定义该闭包最近的类对象，就近原则，定义闭包时，哪个类离的最近就指向哪个，我这里的离得近是指定义闭包的这个类，包含内部类<br>2、owner 永远指向定义该闭包的类对象或者闭包对象，顾名思义，闭包只能定义在类中或者闭包中<br>3、delegate 和 owner 是一样的，我们在闭包的源码中可以看到，owner 会把自己的值赋给 delegate，但同时 delegate 也可以赋其他值<br>注意：在我们使用 this , owner , 和 delegate 的时候， this 和 owner 默认是只读的，我们外部修改不了它，这点在源码中也有体现，但是可以对 delegate 进行操作</p>
+<blockquote>
+<p>闭包可参考：<a target="_blank" rel="noopener" href="https://www.imgeek.org/article/825354237">https://www.imgeek.org/article/825354237</a></p>
+</blockquote>
+<h1 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">def file=new File(&quot;path&quot;)   </span><br><span class="line"></span><br><span class="line">//通过闭包函数每次读取一行内容</span><br><span class="line">file.eachLine &#123; String line -&gt;</span><br><span class="line">    println line</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//通过输入流读每一行</span><br><span class="line">file.withReader &#123; BufferedReader it -&gt;</span><br><span class="line"></span><br><span class="line">    it.readLines().each &#123; String it -&gt;</span><br><span class="line"></span><br><span class="line">        println it</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//通过输入流读每一行</span><br><span class="line">file.withInputStream &#123; InputStream inputStream -&gt;</span><br><span class="line"></span><br><span class="line">    inputStream.eachLine &#123; String it -&gt;</span><br><span class="line"></span><br><span class="line">        println it</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">//通过输出流拷贝文件内容</span><br><span class="line">def file=new File(&quot;path&quot;)  </span><br><span class="line">def targetFile = new File(&#x27;test1.txt&#x27;)</span><br><span class="line"></span><br><span class="line">targetFile.withOutputStream &#123; OutputStream outputStream -&gt;</span><br><span class="line"></span><br><span class="line">    file.withInputStream &#123; InputStream inputStream -&gt;</span><br><span class="line"></span><br><span class="line">        outputStream &lt;&lt; inputStream</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">targetFile.withWriter &#123;BufferedWriter bufferedWriter -&gt;</span><br><span class="line"></span><br><span class="line">    file.withReader &#123;BufferedReader bufferedReader -&gt;</span><br><span class="line"></span><br><span class="line">        bufferedReader.eachLine &#123;String line -&gt;</span><br><span class="line"></span><br><span class="line">            bufferedWriter.write(line + &quot;\r\n&quot;)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><ul>
+<li>不用写 ；分号</li>
+<li>与java相比，没有基本数据类型，都是引用类型</li>
+<li>所有的class类型都可以省略.class</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://dongdian455.github.io">何方神圣tolife</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://dongdian455.github.io/2024/02/07/blogs-main/Gradle/Gradle_groovy%E8%AF%AD%E6%B3%95/">https://dongdian455.github.io/2024/02/07/blogs-main/Gradle/Gradle_groovy%E8%AF%AD%E6%B3%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://dongdian455.github.io" target="_blank">ReturnTolife</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Android/">Android</a><a class="post-meta__tags" href="/tags/Gradle/">Gradle</a></div><div class="post_share"><div class="social-share" data-image="/img/blog_avatar.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/02/07/blogs-main/Gradle/Gradle_%E6%8F%92%E4%BB%B6/" title="Gradle_插件"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Gradle_插件</div></div></a></div><div class="next-post pull-right"><a href="/2024/02/07/blogs-main/Gradle/Gradle_Project%E5%92%8CTask%E5%85%B3%E7%B3%BB/" title="Gradle_Project和Task关系"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Gradle_Project和Task关系</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/02/07/blogs-main/Gradle/Gradle_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="Gradle_基础概念"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-07</div><div class="title">Gradle_基础概念</div></div></a></div><div><a href="/2024/02/07/blogs-main/Gradle/Gradle_Project%E5%92%8CTask%E5%85%B3%E7%B3%BB/" title="Gradle_Project和Task关系"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-07</div><div class="title">Gradle_Project和Task关系</div></div></a></div><div><a href="/2024/02/07/blogs-main/Gradle/Gradle_%E6%8F%92%E4%BB%B6/" title="Gradle_插件"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-07</div><div class="title">Gradle_插件</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/blog_avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">何方神圣tolife</div><div class="author-info__description">这是我的博客网站</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/DongDian455"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">不积跬步，无以至千里</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text">定义变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.1.</span> <span class="toc-text">定义字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Get%E5%92%8CSet%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">Get和Set方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%96%B9%E6%B3%95%E5%92%8C%E8%B0%83%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">定义方法和调用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AF%94%E8%BE%83"><span class="toc-number">3.</span> <span class="toc-text">比较</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AC%A1%E6%96%B9%E8%BF%90%E7%AE%97"><span class="toc-number">4.</span> <span class="toc-text">次方运算</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E5%85%83%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">5.</span> <span class="toc-text">三元表达式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%9E%E7%A9%BA%E5%88%A4%E6%96%AD"><span class="toc-number">6.</span> <span class="toc-text">非空判断</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-number">7.</span> <span class="toc-text">构造方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7"><span class="toc-number">8.</span> <span class="toc-text">异常捕获</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">9.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%86%E5%90%88"><span class="toc-number">10.</span> <span class="toc-text">集合</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#List"><span class="toc-number">10.1.</span> <span class="toc-text">List</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Map"><span class="toc-number">10.2.</span> <span class="toc-text">Map</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-number">11.</span> <span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IO"><span class="toc-number">12.</span> <span class="toc-text">IO</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">13.</span> <span class="toc-text">其他</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/07/blogs-main/Gradle/Gradle_%E6%8F%92%E4%BB%B6/" title="Gradle_插件">Gradle_插件</a><time datetime="2024-02-07T10:15:31.245Z" title="发表于 2024-02-07 18:15:31">2024-02-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/07/blogs-main/Gradle/Gradle_groovy%E8%AF%AD%E6%B3%95/" title="Gradle_groovy语法">Gradle_groovy语法</a><time datetime="2024-02-07T10:08:03.816Z" title="发表于 2024-02-07 18:08:03">2024-02-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/07/blogs-main/Gradle/Gradle_Project%E5%92%8CTask%E5%85%B3%E7%B3%BB/" title="Gradle_Project和Task关系">Gradle_Project和Task关系</a><time datetime="2024-02-07T09:11:43.108Z" title="发表于 2024-02-07 17:11:43">2024-02-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/07/blogs-main/Gradle/Gradle_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="Gradle_基础概念">Gradle_基础概念</a><time datetime="2024-02-07T08:44:12.385Z" title="发表于 2024-02-07 16:44:12">2024-02-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/07/blogs-main/IOS/Object-C%E5%9F%BA%E7%A1%80/" title="Object-C基础">Object-C基础</a><time datetime="2024-02-07T03:37:24.115Z" title="发表于 2024-02-07 11:37:24">2024-02-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 何方神圣tolife</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addModeChange('mermaid', runMermaid)
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><div class="aplayer no-destroy" data-id="2101853004" data-server="netease" data-type="song" data-fixed="true" data-autoplay="true" data-lrctype="-1"> </div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="return,to,life" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"superSample":2,"width":300,"height":600,"position":"right","hOffset":-40,"vOffset":-100},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body></html>
