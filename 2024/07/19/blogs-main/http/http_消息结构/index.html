@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>http_消息结构 | ReturnTolife</title><meta name="author" content="何方神圣tolife"><meta name="copyright" content="何方神圣tolife"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="HTTP定义HTTP 是基于客户端&#x2F;服务端（C&#x2F;S）的架构模型，通过一个可靠的链接来交换信息，是一个无状态的请求&#x2F;响应协议。 客户端消息结构客户端发送一个HTTP请求到服务器的请求消息包括四个部分组成：  请求行（request line） 请求头部（header） 空行 请求数据   请求行（Request Line）：方法：如 GET、POST、PUT、DELET">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>http_消息结构 | ReturnTolife</title><meta name="author" content="何方神圣tolife"><meta name="copyright" content="何方神圣tolife"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="HTTP定义HTTP 是基于客户端&#x2F;服务端（C&#x2F;S）的架构模型，通过一个可靠的链接来交换信息，是一个无状态的请求&#x2F;响应协议。 客户端请求消息客户端发送一个HTTP请求到服务器的请求消息包括四个部分组成：  请求行（request line） 请求头部（header） 空行 请求数据  请求行（Request Line） 方法：如 GET、POST、PUT、DELETE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="http_消息结构">
 <meta property="og:url" content="https://dongdian455.github.io/2024/07/19/blogs-main/http/http_%E6%B6%88%E6%81%AF%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="ReturnTolife">
-<meta property="og:description" content="HTTP定义HTTP 是基于客户端&#x2F;服务端（C&#x2F;S）的架构模型，通过一个可靠的链接来交换信息，是一个无状态的请求&#x2F;响应协议。 客户端消息结构客户端发送一个HTTP请求到服务器的请求消息包括四个部分组成：  请求行（request line） 请求头部（header） 空行 请求数据   请求行（Request Line）：方法：如 GET、POST、PUT、DELET">
+<meta property="og:description" content="HTTP定义HTTP 是基于客户端&#x2F;服务端（C&#x2F;S）的架构模型，通过一个可靠的链接来交换信息，是一个无状态的请求&#x2F;响应协议。 客户端请求消息客户端发送一个HTTP请求到服务器的请求消息包括四个部分组成：  请求行（request line） 请求头部（header） 空行 请求数据  请求行（Request Line） 方法：如 GET、POST、PUT、DELETE">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://dongdian455.github.io/img/blog_avatar.jpeg">
 <meta property="article:published_time" content="2024-07-19T07:40:52.485Z">
-<meta property="article:modified_time" content="2024-07-19T07:45:20.550Z">
+<meta property="article:modified_time" content="2024-07-19T08:26:30.911Z">
 <meta property="article:author" content="何方神圣tolife">
 <meta property="article:tag" content="http">
 <meta name="twitter:card" content="summary">
@@ -58,7 +58,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-07-19 15:45:20'
+  postUpdate: '2024-07-19 16:26:30'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -183,18 +183,129 @@
     document.addEventListener('pjax:send', () => { preloader.initLoading() })
     document.addEventListener('pjax:complete', () => { preloader.endLoading() })
   }
-})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/blog_avatar.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="ReturnTolife"><span class="site-name">ReturnTolife</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">http_消息结构</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-07-19T07:40:52.485Z" title="发表于 2024-07-19 15:40:52">2024-07-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-19T07:45:20.550Z" title="更新于 2024-07-19 15:45:20">2024-07-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="http_消息结构"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="HTTP定义"><a href="#HTTP定义" class="headerlink" title="HTTP定义"></a>HTTP定义</h1><p>HTTP 是基于客户端&#x2F;服务端（C&#x2F;S）的架构模型，通过一个可靠的链接来交换信息，是一个无状态的请求&#x2F;响应协议。</p>
-<h1 id="客户端消息结构"><a href="#客户端消息结构" class="headerlink" title="客户端消息结构"></a>客户端消息结构</h1><p>客户端发送一个HTTP请求到服务器的请求消息包括四个部分组成：</p>
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/blog_avatar.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="ReturnTolife"><span class="site-name">ReturnTolife</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">http_消息结构</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-07-19T07:40:52.485Z" title="发表于 2024-07-19 15:40:52">2024-07-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-19T08:26:30.911Z" title="更新于 2024-07-19 16:26:30">2024-07-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="http_消息结构"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="HTTP定义"><a href="#HTTP定义" class="headerlink" title="HTTP定义"></a>HTTP定义</h1><p>HTTP 是基于客户端&#x2F;服务端（C&#x2F;S）的架构模型，通过一个可靠的链接来交换信息，是一个无状态的请求&#x2F;响应协议。</p>
+<h1 id="客户端请求消息"><a href="#客户端请求消息" class="headerlink" title="客户端请求消息"></a>客户端请求消息</h1><p>客户端发送一个HTTP请求到服务器的请求消息包括四个部分组成：</p>
 <ul>
 <li>请求行（request line）</li>
 <li>请求头部（header）</li>
 <li>空行</li>
 <li>请求数据</li>
 </ul>
-<blockquote>
-<p>请求行（Request Line）：<br>方法：如 GET、POST、PUT、DELETE等，指定要执行的操作。<br>请求 URI（统一资源标识符）：请求的资源路径，通常包括主机名、端口号（如果非默认）、路径和查询字符串。<br>HTTP 版本：如 HTTP&#x2F;1.1 或 HTTP&#x2F;2。<br>请求行的格式示例：GET &#x2F;index.html HTTP&#x2F;1.1<br>请求头（Request Headers）：<br>包含了客户端环境信息、请求体的大小（如果有）、客户端支持的压缩类型等。<br>常见的请求头包括Host、User-Agent、Accept、Accept-Encoding、Content-Length等。<br>空行：<br>请求头和请求体之间的分隔符，表示请求头的结束。<br>请求体（可选）：<br>在某些类型的HTTP请求（如 POST 和 PUT）中，请求体包含要发送给服务器的数据。</p>
+<h2 id="请求行（Request-Line）"><a href="#请求行（Request-Line）" class="headerlink" title="请求行（Request Line）"></a>请求行（Request Line）</h2><ul>
+<li>方法：如 GET、POST、PUT、DELETE等，指定要执行的操作。</li>
+<li>请求 URI（统一资源标识符）：请求的资源路径，通常包括主机名、端口号（如果非默认）、路径和查询字符串。</li>
+<li>HTTP 版本：如 HTTP&#x2F;1.1 或 HTTP&#x2F;2。<blockquote>
+<p>示例：<br>GET &#x2F;index.html HTTP&#x2F;1.1</p>
 </blockquote>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://dongdian455.github.io">何方神圣tolife</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://dongdian455.github.io/2024/07/19/blogs-main/http/http_%E6%B6%88%E6%81%AF%E7%BB%93%E6%9E%84/">https://dongdian455.github.io/2024/07/19/blogs-main/http/http_%E6%B6%88%E6%81%AF%E7%BB%93%E6%9E%84/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://dongdian455.github.io" target="_blank">ReturnTolife</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/http/">http</a></div><div class="post_share"><div class="social-share" data-image="/img/blog_avatar.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/06/24/blogs-main/IOS/IOS%E8%AF%81%E4%B9%A6%E7%AE%A1%E7%90%86/" title="IOS证书管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">IOS证书管理</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/blog_avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">何方神圣tolife</div><div class="author-info__description">这是我的博客网站</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/DongDian455"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">不积跬步，无以至千里</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">HTTP定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B6%88%E6%81%AF%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">客户端消息结构</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/19/blogs-main/http/http_%E6%B6%88%E6%81%AF%E7%BB%93%E6%9E%84/" title="http_消息结构">http_消息结构</a><time datetime="2024-07-19T07:40:52.485Z" title="发表于 2024-07-19 15:40:52">2024-07-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/24/blogs-main/IOS/IOS%E8%AF%81%E4%B9%A6%E7%AE%A1%E7%90%86/" title="IOS证书管理">IOS证书管理</a><time datetime="2024-06-24T06:54:10.361Z" title="发表于 2024-06-24 14:54:10">2024-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/19/blogs-main/Gradle/Gradle_%E6%8F%92%E4%BB%B6/" title="Gradle_插件">Gradle_插件</a><time datetime="2024-02-19T11:15:32.845Z" title="发表于 2024-02-19 19:15:32">2024-02-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/19/blogs-main/Gradle/Gradle_groovy%E8%AF%AD%E6%B3%95/" title="Gradle_groovy语法">Gradle_groovy语法</a><time datetime="2024-02-19T11:08:30.449Z" title="发表于 2024-02-19 19:08:30">2024-02-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/19/blogs-main/Gradle/Gradle_Project%E5%92%8CTask%E5%85%B3%E7%B3%BB/" title="Gradle_Project和Task关系">Gradle_Project和Task关系</a><time datetime="2024-02-19T11:02:43.616Z" title="发表于 2024-02-19 19:02:43">2024-02-19</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 何方神圣tolife</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+</li>
+</ul>
+<h2 id="请求头（Request-Headers）"><a href="#请求头（Request-Headers）" class="headerlink" title="请求头（Request Headers）"></a>请求头（Request Headers）</h2><p>包含了客户端环境信息、请求体的大小（如果有）、客户端支持的压缩类型等。<br>常见的请求头包括以下数据:</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Host</td>
+<td>用于指定被请求资源的Internet主机和端口号</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td>告诉HTTP服务器， 客户端使用的操作系统和浏览器的名称和版本</td>
+</tr>
+<tr>
+<td>Accept</td>
+<td>告诉HTTP服务器,浏览器可以接受服务器回发的数据类型</td>
+</tr>
+<tr>
+<td>Accept-Encoding</td>
+<td>浏览器申明自己接收的编码方法，通常指定压缩方法，是否支持压缩，支持什么压缩方法（gzip，deflate），（注意：这不是只字符编码）</td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>告诉HTTP服务器，当前请求体的大小</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td><strong>Connection: keep-alive</strong>  当一个网页打开完成后，客户端和服务器之间用于传输HTTP数据的TCP连接不会关闭，如果客户端再次访问这个服务器上的网页，会继续使用这一条已经建立的连接。<br> <strong>Connection: close</strong> 代表一个Request完成后，客户端和服务器之间用于传输HTTP数据的TCP连接会关闭， 当客户端再次发送Request，需要重新建立TCP连接。</td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>用来存储一些用户信息以便让服务器辨别用户身份</td>
+</tr>
+<tr>
+<td>Range</td>
+<td>用于告诉服务器自己想取对象的哪部(断点续传)</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>示例：<br>Host: <a target="_blank" rel="noopener" href="http://www.example.com/">www.example.com</a>     &#x2F;&#x2F;请求头开始<br>User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko&#x2F;20100101 Firefox&#x2F;91.0<br>Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;webp,<em>&#x2F;</em>;q&#x3D;0.8<br>Accept-Encoding: gzip, deflate</p>
+</blockquote>
+<h2 id="空行"><a href="#空行" class="headerlink" title="空行"></a>空行</h2><p>请求头和请求体之间的分隔符，表示请求头的结束。</p>
+<h2 id="请求体（可选）"><a href="#请求体（可选）" class="headerlink" title="请求体（可选）"></a>请求体（可选）</h2><p>在某些类型的HTTP请求（如 POST 和 PUT）中，请求体包含要发送给服务器的数据。</p>
+<h2 id="完整案例"><a href="#完整案例" class="headerlink" title="完整案例"></a>完整案例</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GET /index.html HTTP/1.1  //请求行</span><br><span class="line">Host: www.example.com     //请求头开始</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: keep-alive   </span><br><span class="line">                         //空行为请求头结束</span><br></pre></td></tr></table></figure>
+
+<h1 id="服务端响应消息"><a href="#服务端响应消息" class="headerlink" title="服务端响应消息"></a>服务端响应消息</h1><p>HTTP 响应也由四个部分组成，分别是：</p>
+<ul>
+<li>状态行</li>
+<li>消息报头</li>
+<li>空行</li>
+<li>响应正文</li>
+</ul>
+<h2 id="状态行（Status-Line）"><a href="#状态行（Status-Line）" class="headerlink" title="状态行（Status Line）"></a>状态行（Status Line）</h2><ul>
+<li>HTTP 版本：与请求消息中的版本相匹配。</li>
+<li>状态码：三位数，表示请求的处理结果，如 200 表示成功，404 表示未找到资源。</li>
+<li>状态信息：状态码的简短描述。<blockquote>
+<p>示例：<br>HTTP&#x2F;1.1 200 OK</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="响应头（Response-Headers）"><a href="#响应头（Response-Headers）" class="headerlink" title="响应头（Response Headers）"></a>响应头（Response Headers）</h2><p>包含了服务器环境信息、响应体的大小、服务器支持的压缩类型等。<br>常见的响应头如下：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Content-Type</td>
+<td>告诉客户端，资源文件的类型，还有字符编码</td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>告诉客户端,响应体的大小</td>
+</tr>
+<tr>
+<td>Server</td>
+<td>告诉客户端服务器的一些消息</td>
+</tr>
+<tr>
+<td>Content-Encoding</td>
+<td>告诉客户端，服务端发送的资源是采用gzip编码的，客户端看到这个信息后，应该采用gzip对资源进行解码</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>服务端发送资源时的服务器时间</td>
+</tr>
+<tr>
+<td>Last-Modified</td>
+<td>所请求的对象的最后修改日期</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td><strong>Connection：keep-alive</strong> 这个字段作为回应客户端的Connection：keep-alive，告诉客户端服务器的tcp连接也是一个长连接，客户端可以继续使用这个tcp连接发送http请求</td>
+</tr>
+<tr>
+<td>Content-Range</td>
+<td>服务器向客户返回一个部分响应，它必须描述响应覆盖的范围和整个实体长度</td>
+</tr>
+</tbody></table>
+<h2 id="空行-1"><a href="#空行-1" class="headerlink" title="空行"></a>空行</h2><p>响应头和响应体之间的分隔符，表示响应头的结束。</p>
+<h2 id="响应体（可选）"><a href="#响应体（可选）" class="headerlink" title="响应体（可选）"></a>响应体（可选）</h2><p>包含服务器返回的数据，如请求的网页内容、图片、JSON数据等。</p>
+<h2 id="完整案例-1"><a href="#完整案例-1" class="headerlink" title="完整案例"></a>完整案例</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK      //响应行</span><br><span class="line">Date: Wed, 18 Apr 2024 12:00:00 GMT //响应头开始</span><br><span class="line">Server: Apache/2.4.1 (Unix)</span><br><span class="line">Last-Modified: Wed, 18 Apr 2024 11:00:00 GMT</span><br><span class="line">Content-Length: 12345</span><br><span class="line">Content-Type: text/html; charset=UTF-8</span><br><span class="line">                                    //空行为响应头结束</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Example Page&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;Hello, World!&lt;/h1&gt;</span><br><span class="line">    &lt;!-- The rest of the HTML content --&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://dongdian455.github.io">何方神圣tolife</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://dongdian455.github.io/2024/07/19/blogs-main/http/http_%E6%B6%88%E6%81%AF%E7%BB%93%E6%9E%84/">https://dongdian455.github.io/2024/07/19/blogs-main/http/http_%E6%B6%88%E6%81%AF%E7%BB%93%E6%9E%84/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://dongdian455.github.io" target="_blank">ReturnTolife</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/http/">http</a></div><div class="post_share"><div class="social-share" data-image="/img/blog_avatar.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/07/22/blogs-main/foundation/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BC%96%E7%A0%81/" title="常见计算机编码方式"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">常见计算机编码方式</div></div></a></div><div class="next-post pull-right"><a href="/2024/06/24/blogs-main/IOS/IOS%E8%AF%81%E4%B9%A6%E7%AE%A1%E7%90%86/" title="IOS证书管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">IOS证书管理</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/blog_avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">何方神圣tolife</div><div class="author-info__description">这是我的博客网站</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/DongDian455"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">不积跬步，无以至千里</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">HTTP定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AF%B7%E6%B1%82%E6%B6%88%E6%81%AF"><span class="toc-number">2.</span> <span class="toc-text">客户端请求消息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E8%A1%8C%EF%BC%88Request-Line%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">请求行（Request Line）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%A4%B4%EF%BC%88Request-Headers%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">请求头（Request Headers）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A9%BA%E8%A1%8C"><span class="toc-number">2.3.</span> <span class="toc-text">空行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E4%BD%93%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-number">2.4.</span> <span class="toc-text">请求体（可选）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E6%A1%88%E4%BE%8B"><span class="toc-number">2.5.</span> <span class="toc-text">完整案例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%93%8D%E5%BA%94%E6%B6%88%E6%81%AF"><span class="toc-number">3.</span> <span class="toc-text">服务端响应消息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E8%A1%8C%EF%BC%88Status-Line%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">状态行（Status Line）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%A4%B4%EF%BC%88Response-Headers%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">响应头（Response Headers）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A9%BA%E8%A1%8C-1"><span class="toc-number">3.3.</span> <span class="toc-text">空行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E4%BD%93%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-number">3.4.</span> <span class="toc-text">响应体（可选）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E6%A1%88%E4%BE%8B-1"><span class="toc-number">3.5.</span> <span class="toc-text">完整案例</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/22/blogs-main/foundation/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BC%96%E7%A0%81/" title="常见计算机编码方式">常见计算机编码方式</a><time datetime="2024-07-22T03:13:24.580Z" title="发表于 2024-07-22 11:13:24">2024-07-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/19/blogs-main/http/http_%E6%B6%88%E6%81%AF%E7%BB%93%E6%9E%84/" title="http_消息结构">http_消息结构</a><time datetime="2024-07-19T07:40:52.485Z" title="发表于 2024-07-19 15:40:52">2024-07-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/24/blogs-main/IOS/IOS%E8%AF%81%E4%B9%A6%E7%AE%A1%E7%90%86/" title="IOS证书管理">IOS证书管理</a><time datetime="2024-06-24T06:54:10.361Z" title="发表于 2024-06-24 14:54:10">2024-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/19/blogs-main/Gradle/Gradle_%E6%8F%92%E4%BB%B6/" title="Gradle_插件">Gradle_插件</a><time datetime="2024-02-19T11:15:32.845Z" title="发表于 2024-02-19 19:15:32">2024-02-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/19/blogs-main/Gradle/Gradle_groovy%E8%AF%AD%E6%B3%95/" title="Gradle_groovy语法">Gradle_groovy语法</a><time datetime="2024-02-19T11:08:30.449Z" title="发表于 2024-02-19 19:08:30">2024-02-19</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 何方神圣tolife</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
   const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
   if ($mermaid.length === 0) return
   const runMermaid = () => {
