@@ -40,11 +40,11 @@ social:
 # --------------------------------------
 
 # Favicon（網站圖標）
-favicon: /img/blog_avatar.jpeg
+favicon: /img/blog_avatar.png
 
 # Avatar (頭像)
 avatar:
-  img: /img/blog_avatar.jpeg
+  img: /img/blog_avatar.png
   effect: false
 
 # Disable all banner image
